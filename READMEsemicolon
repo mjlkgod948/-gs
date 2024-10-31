@@ -1,0 +1,39 @@
+grequire 'path/to/google-search-results.php';
+require 'path/to/restclient.php';
+
+$query = [
+ "q" => "redis cli",
+ "location" => "Austin, Texas, United States",
+ "hl" => "en",
+ "gl" => "us",
+ "google_domain" => "google.com",
+];
+
+$search = new GoogleSearch('secret_api_key');
+$result = $search->get_json($query)
+]gg// [dependencies]
+// serpapi-search-rust="0.1.0"
+// tokio = { version = "1", features = ["full"] }
+
+use serpapi_search_rust::serp_api_search::SerpApiSearch;
+use std::collections::HashMap;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+  let mut params = HashMap::<String, String>::new();
+  params.insert("q".to_string(), "redis cli".to_string());
+  params.insert("location".to_string(), "Austin, Texas, United States".to_string());
+  params.insert("hl".to_string(), "en".to_string());
+  params.insert("gl".to_string(), "us".to_string());
+  params.insert("google_domain".to_string(), "google.com".to_string());
+
+  let search = SerpApiSearch::google(params, "secret_api_key".to_string());
+  
+  let results = search.json().await?;
+  println!("results received");
+  println!("--- JSON ---");
+  println!(" - results: {}", results);
+
+  print!("ok");
+  Ok(())
+}
